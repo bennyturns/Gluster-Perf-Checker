@@ -81,6 +81,8 @@ for volume in $volumes; do
         fi
     done
     options="false"
+    echo "End of volume $volume"
+    echo ""
 done
 
 # Gather perf CPU stats
