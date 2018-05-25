@@ -82,3 +82,23 @@ for volume in $volumes; do
     done
     options="false"
 done
+
+# Gather perf CPU stats
+echo ""
+rpm -q perf &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "Perf RPM not found, cannot run perf stats."
+else
+    echo "Gathering 10 second sample of CPU stats"
+    perf stat -a -- sleep 10
+fi
+
+# Gather memory information
+echo""
+echo "Memory info:"
+cat /proc/meminfo
+
+# Gather NW stats
+echo ""
+echo "NW info:"
+ifconfig -a
